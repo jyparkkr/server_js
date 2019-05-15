@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1
+      a(href='/topic') Return to main page
+    ul
+      each topic in topics
+        li
+          a(href='/topic/'+topic.id)= topic.title
+    artcle
+      form(action='/topic/'+rows.id+'/edit', method = 'post')
+        p
+          input(type='text' name='title' value=rows.title placeholder='title')
+        p
+          textarea(name='description' placeholder='description')
+            =rows.description
+        p
+          input(type='text' name='author' value=rows.author placeholder='author')
+        p
+        p
+          input(type='submit')

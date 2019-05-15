@@ -1,0 +1,22 @@
+{
+  "name": "server_js",
+  "version": "1.0.0",
+  "description": "javascript server-side tutorial",
+  "main": "hello.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jade": "^1.11.0",
+    "node-mysql": "^0.4.2",
+    "save": "^2.3.3",
+    "supervisor": "^0.12.0",
+    "uglify-js": "^3.4.9",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

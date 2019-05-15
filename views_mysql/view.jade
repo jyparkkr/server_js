@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1
+      a(href='/topic') Server Side Javascript
+    ul
+      if topics
+        h2
+          each topic in topics
+            li
+              a(href='/topic/'+topic.id)= topic.title
+      else
+        h2 No topic is written yet
+    artcle
+      if rows
+        h3= rows.title
+        = rows.description
+        div= 'by '+rows.author
+      else
+        h3 Welcome
+        | This is server_side javascript tutorial.
+    ul
+      li
+        a(href='/topic/add') add
+      if rows
+        li
+          a(href='/topic/'+rows.id+'/edit') edit
+        li
+          a(href='/topic/'+rows.id+'/delete') delete
