@@ -63,6 +63,8 @@ app.get('/topic/edit', function(req, res){
 });
 
 app.get(['/topic/:id/edit'], function(req, res){
+  console.log(':id/edit');
+
   var sql = 'SELECT id, title FROM topic';
   conn.query(sql, function(err, topics, fields){
     var id = req.params.id;
@@ -85,7 +87,6 @@ app.get(['/topic/:id/edit'], function(req, res){
 });
 
 app.post(['/topic/:id/edit'], function(req, res){
-  console.log('here');
   var title = req.body.title;
   var description = req.body.description;
   var author = req.body.author;
@@ -99,6 +100,33 @@ app.post(['/topic/:id/edit'], function(req, res){
       res.redirect('/topic/'+id);
     }
   });
+})
+
+
+app.get('/topic/:id/delete', function(req, res){
+  console.log('del called');
+  var sql = 'SELECT id,title FROM topic';
+  var id = req.params.id;
+  conn.query(sql, function(err, topics, fields){
+    var sql = 'SELECT * FROM topic WHERE id=?';
+    conn.query(sql, [id], function(err, topic){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+      }else{
+        //res.send(topic);
+        res.render('delete', {topics:topics, topic:topic[0]});
+      }
+    })
+  });
+});
+
+app.post('/topic/:id/delete', function(req, res){
+  var id = req.params.id;
+  var sql = 'DELETE FROM topic WHERE id=?';
+  conn.query(sql, [id], function(err, result){
+    res.redirect('/topic/');
+  })
 })
 
 app.get(['/topic', '/topic/:id'], function(req, res){
